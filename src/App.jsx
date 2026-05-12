@@ -1,16 +1,21 @@
 // import { useState } from 'react'
-import './App.css'
+import { useContext } from "react";
+import "./App.css";
+import Sidebar from "./components/Sidebar";
+import { ThemeContext } from "./hooks/GlobalContext";
+import Board from "./components/Board";
 
 function App() {
-
+  const {theme} = useContext(ThemeContext)
   return (
     <>
-      <div className="bg-[#111111] w-screen h-screen box-border flex p-1">
-        <aside className="w-[15%]"></aside>
-        <main className="flex-1 bg-[#171717] rounded-lg border border-[#444]"></main>
+      <div className={`w-screen ${theme ? "bg-[#111111]" : "text-black"} h-screen box-border flex p-1 app`}>
+        <Sidebar/>
+
+        <Board/>
       </div>
     </>
   );
 }
 
-export default App
+export default App;
