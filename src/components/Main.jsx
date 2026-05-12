@@ -36,7 +36,7 @@ const Main = () => {
 
 
   return (
-    <main className="w-full flex gap-2 p-3 overflow-y-scroll ">
+    <main className="w-full flex gap-2 p-3">
         {boardColumns.map(column => {
             return <Column key={column.status} {...column} />
         })}

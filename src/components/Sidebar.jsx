@@ -6,7 +6,7 @@ const Sidebar = () => {
     const {theme} = useContext(ThemeContext);
 
   return (
-    <aside className="lg:w-[15%] sm:w-full h-max flex p-3 items-center">
+    <aside className="lg:w-[15%] sm:w-full h-max flex p-3 items-center transition-all">
       <h1 className={`${theme ? "text-white" : "text-black"} font-black text-[1.3rem]`}>Listify📋</h1>
     </aside>
   );

@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { TasksContext } from "../hooks/GlobalContext";
 
-
 const FormInput = () => {
     const [task, setTask] = useState("");
     const [creator, setCreator] = useState("");
@@ -18,6 +17,9 @@ const FormInput = () => {
           date: new Date().toISOString(),
         };
 
+        setTask("");
+        setCreator("");
+
         return setTasks([...tasks, newTask]);
     }
 
@@ -30,6 +32,7 @@ const FormInput = () => {
         name="text"
         id="text"
         placeholder="What needs to be done?"
+        value={task}
         onChange={(event) => setTask(event.target.value)}
       />
 
@@ -40,14 +43,15 @@ const FormInput = () => {
         name="creator"
         id="creator"
         placeholder="Created by..."
+        value={creator}
         onChange={(event) => setCreator(event.target.value)}
       />
 
       <button
         className="bg-[#2563EB] hover:bg-[#1D4ED8] text-[.7rem] px-3 py-1 rounded-lg text-white"
         onClick={(e) => {
-            e.preventDefault();
-            addTodo();
+          e.preventDefault();
+          addTodo();
         }}
       >
         Add Task
