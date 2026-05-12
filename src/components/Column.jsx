@@ -1,38 +1,38 @@
 /* eslint-disable react-hooks/static-components */
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import getIdImageForTitle from "../helpers/getIdImageForTitle";
-import { ThemeContext } from "../hooks/GlobalContext";
+import {
+  DragContext,
+  TasksContext,
+  ThemeContext,
+} from "../hooks/GlobalContext";
 import Card from "./Card";
+import updateCount from "../helpers/updateCount";
 
 const Column = ({ title, status, color, bg_color, card_bg_color }) => {
-
   const Icon = getIdImageForTitle(title);
   const { theme } = useContext(ThemeContext);
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Design task card",
-      creator: "Daniel",
-      status: "todo",
-    },
-    {
-      id: 2,
-      title: "Build drag and drop",
-      creator: "Sarah",
-      status: "in_progress",
-    },
-  ]);
+  const { tasks, setTasks } = useContext(TasksContext);
+  const { draggedId } = useContext(DragContext);
 
-  useEffect(() => {
-    return () => setTasks()
-  }, [])
+  const changeStatus = (id, status) => {
+    const newSet = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, status: status };
+      } else {
+        return task;
+      }
+    });
+
+    return setTasks(newSet);
+  };
 
   return (
     <div
       className={`w-full h-max border ${theme ? "border-[#333]" : "border-[#E7E7E9] bg-[#F5F7F9]"} rounded-lg p-2`}
-    //   onDragOver={(event) => event.preventDefault()}
-      onDrop={(event) => event.preventDefault()}
+      onDragOver={(event) => event.preventDefault()}
+      onDrop={() => changeStatus(draggedId, status)}
     >
       <div className={`flex items-center gap-1 text-[${bg_color}] mb-4`}>
         {Icon && <Icon size={13} color={`${color}`} />}
@@ -42,16 +42,17 @@ const Column = ({ title, status, color, bg_color, card_bg_color }) => {
           style={{ backgroundColor: bg_color, color: color }}
           className="text-[.6rem] font-semibold rounded-full ml-1 px-2 border"
         >
-          {1}
+          {updateCount(tasks, status)}
         </span>
       </div>
 
       <div className="">
-        {tasks.filter(task => task.status === status).map((task)=> {
-            return <Card key={task.id} {...task} bg={card_bg_color} />
-        })}
+        {tasks
+          .filter((task) => task.status === status)
+          .map((task) => {
+            return <Card key={task.id} {...task} bg={card_bg_color} />;
+          })}
       </div>
-
     </div>
   );
 };
