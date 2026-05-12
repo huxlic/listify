@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { DragContext, TasksContext, ThemeContext } from "../hooks/GlobalContext";
 import { LuCalendarDays } from "react-icons/lu";
-import { FcDeleteRow } from "react-icons/fc";
+import { FiTrash2 } from "react-icons/fi";
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter ";
 import formatDateTime from "../helpers/formatDateTime";
 
@@ -36,10 +36,13 @@ const Card = ({ title, date, creator, id, bg }) => {
           </time>
         </div>
       )}
-      <div className="cursor-pointer absolute right-2" onClick={() => {
-        setTasks(tasks.filter((task) => task.id !== id))
-      }}>
-        <FcDeleteRow />
+      <div
+        className="cursor-pointer absolute right-2"
+        onClick={() => {
+          setTasks(tasks.filter((task) => task.id !== id));
+        }}
+      >
+        <FiTrash2 color={theme ? "#aaa" : "#9CA3AF"} size={15} />
       </div>
     </div>
   );
