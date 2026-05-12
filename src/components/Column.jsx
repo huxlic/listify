@@ -30,7 +30,7 @@ const Column = ({ title, status, color, bg_color, card_bg_color }) => {
 
   return (
     <div
-      className={`w-full h-max border ${theme ? "border-[#333]" : "border-[#E7E7E9] bg-[#F5F7F9]"} rounded-lg p-2`}
+      className={`w-full h-max border ${theme ? "border-[#333] bg-[#111111]" : "border-[#E7E7E9] bg-[#F5F7F9]"} rounded-lg p-2`}
       onDragOver={(event) => event.preventDefault()}
       onDrop={() => changeStatus(draggedId, status)}
     >
