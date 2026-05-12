@@ -6,8 +6,10 @@ import GlobalContext from "./hooks/GlobalContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <GlobalContext>
-      <App />
-    </GlobalContext>
+    {/* <BrowserRouter> */}
+      <GlobalContext>
+        <App />
+      </GlobalContext>
+    {/* </BrowserRouter> */}
   </StrictMode>,
 );

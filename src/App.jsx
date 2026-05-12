@@ -11,7 +11,6 @@ function App() {
     <>
       <div className={`w-screen ${theme ? "bg-[#111111]" : "text-black"} h-screen box-border flex p-1 app`}>
         <Sidebar/>
-
         <Board/>
       </div>
     </>
