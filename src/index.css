@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+.app {
+    font-family: "JetBrains Mono";
+}
+
 ::-webkit-scrollbar {
     width: 4px;
 }
