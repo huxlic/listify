@@ -10,7 +10,7 @@ const Board = () => {
 
   return (
     <div
-      className={`w-full flex-1 ${theme ? "bg-[#171717] text-white border-[#222]" : "text-black border-[#E7E7E9]"} rounded-lg border-2 flex flex-col overflow-hidden`}
+      className={`w-full flex-1 ${theme ? "bg-[#171717] text-white border-[#222]" : "text-black border-[#E7E7E9]"} rounded-lg border-2 flex flex-col overflow-hidden board`}
     >
       <Header />
       <Main />
