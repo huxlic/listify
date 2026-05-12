@@ -9,9 +9,11 @@ function App() {
   const {theme} = useContext(ThemeContext)
   return (
     <>
-      <div className={`w-screen ${theme ? "bg-[#111111]" : "text-black"} h-screen box-border flex p-1 app`}>
-        <Sidebar/>
-        <Board/>
+      <div
+        className={`w-screen ${theme ? "bg-[#111111]" : "text-black"} h-screen box-border flex flex-col p-1 lg:flex-row sm:flex-col app`}
+      >
+        <Sidebar />
+        <Board />
       </div>
     </>
   );
