@@ -1,21 +1,23 @@
 // import React from 'react'
 
 import { useContext } from "react";
-import { DragContext, ThemeContext } from "../hooks/GlobalContext";
+import { DragContext, TasksContext, ThemeContext } from "../hooks/GlobalContext";
 import { LuCalendarDays } from "react-icons/lu";
+import { FcDeleteRow } from "react-icons/fc";
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter ";
 import formatDateTime from "../helpers/formatDateTime";
 
 const Card = ({ title, date, creator, id, bg }) => {
   const { theme } = useContext(ThemeContext);
   const { setDraggedId } = useContext(DragContext);
+  const {tasks, setTasks} = useContext(TasksContext)
 
   return (
     <div
       draggable="true"
       onDragStart={() => setDraggedId(id)}
       style={{ backgroundColor: theme ? bg : "white" }}
-      className={`cursor-grab w-full h-max mb-2 font-sans rounded-lg flex flex-col p-2 gap-2 border ${theme ? "border-[#333]" : "border-[#E7E7E9]"}`}
+      className={`relative cursor-grab w-full h-max mb-2 font-sans rounded-lg flex flex-col p-2 gap-2 border ${theme ? "border-[#333]" : "border-[#E7E7E9]"}`}
     >
       {creator && (
         <span className="text-[#9CA3AF] text-[.65rem] font-medium capitalize">
@@ -34,6 +36,11 @@ const Card = ({ title, date, creator, id, bg }) => {
           </time>
         </div>
       )}
+      <div className="cursor-pointer absolute right-2" onClick={() => {
+        setTasks(tasks.filter((task) => task.id !== id))
+      }}>
+        <FcDeleteRow />
+      </div>
     </div>
   );
 };
