@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // import React from 'react'
 export const ThemeContext = createContext();
@@ -8,8 +8,12 @@ export const DragContext = createContext();
 
 const GlobalContext = ({ children }) => {
   const [theme, setTheme] = useState(true);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
   const [draggedId, setDraggedId] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
