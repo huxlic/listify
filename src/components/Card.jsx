@@ -1,7 +1,11 @@
 // import React from 'react'
 
 import { useContext } from "react";
-import { DragContext, TasksContext, ThemeContext } from "../hooks/GlobalContext";
+import {
+  DragContext,
+  TasksContext,
+  ThemeContext,
+} from "../hooks/GlobalContext";
 import { LuCalendarDays } from "react-icons/lu";
 import { FiTrash2 } from "react-icons/fi";
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter ";
@@ -10,7 +14,11 @@ import formatDateTime from "../helpers/formatDateTime";
 const Card = ({ title, date, creator, id, bg }) => {
   const { theme } = useContext(ThemeContext);
   const { setDraggedId } = useContext(DragContext);
-  const {tasks, setTasks} = useContext(TasksContext)
+  const { tasks, setTasks } = useContext(TasksContext);
+
+  const deleteTodo = (id) => {
+    return setTasks(tasks.filter((task) => task.id !== id));
+  };
 
   return (
     <div
@@ -38,9 +46,7 @@ const Card = ({ title, date, creator, id, bg }) => {
       )}
       <div
         className="cursor-pointer absolute right-2"
-        onClick={() => {
-          setTasks(tasks.filter((task) => task.id !== id));
-        }}
+        onClick={() => deleteTodo(id)}
       >
         <FiTrash2 color={theme ? "#aaa" : "#9CA3AF"} size={13} />
       </div>
