@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div
-        className={`w-screen ${theme ? "bg-[#111111]" : "text-black"} h-screen box-border flex flex-col p-1 lg:flex-row sm:flex-col transition-all app`}
+        className={`w-screen ${theme ? "bg-[#111111]" : "text-black"} h-screen box-border flex flex-col p-1 lg:flex-row sm:flex-col transition-all overflow-hidden app`}
       >
         <Sidebar />
         <Board />
