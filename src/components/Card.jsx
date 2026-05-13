@@ -42,7 +42,7 @@ const Card = ({ title, date, creator, id, bg }) => {
           setTasks(tasks.filter((task) => task.id !== id));
         }}
       >
-        <FiTrash2 color={theme ? "#aaa" : "#9CA3AF"} size={15} />
+        <FiTrash2 color={theme ? "#aaa" : "#9CA3AF"} size={13} />
       </div>
     </div>
   );

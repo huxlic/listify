@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { TasksContext } from "../hooks/GlobalContext";
 
-
 const FormInput = () => {
     const [task, setTask] = useState("");
     const [creator, setCreator] = useState("");
@@ -18,6 +17,9 @@ const FormInput = () => {
           date: new Date().toISOString(),
         };
 
+        setTask("");
+        setCreator("");
+
         return setTasks([...tasks, newTask]);
     }
 
@@ -25,29 +27,31 @@ const FormInput = () => {
     <form action="" className="flex w-2/3 gap-1">
       <label htmlFor="text"></label>
       <input
-        className="flex-1 text-[.7rem] bg-[rgba(156, 163, 175, 0.12)]  outline-none border-2 border-gray-400/35 rounded-lg px-3 py-1 placeholder:text-[#A8A29E]"
+        className="flex-2 text-[.7rem] bg-[rgba(156, 163, 175, 0.12)]  outline-none border-2 border-gray-400/35 rounded-lg px-3 py-1 placeholder:text-[#A8A29E] focus:border-[#2563EBaa]"
         type="text"
         name="text"
         id="text"
         placeholder="What needs to be done?"
+        value={task}
         onChange={(event) => setTask(event.target.value)}
       />
 
       <label htmlFor="creator"></label>
       <input
-        className=" text-[.7rem] bg-[rgba(156, 163, 175, 0.12)]  outline-none border-2 border-gray-400/35 rounded-lg px-3 py-1 placeholder:text-[#A8A29E]"
+        className="flex-1 text-[.7rem] bg-[rgba(156, 163, 175, 0.12)]  outline-none border-2 border-gray-400/35 rounded-lg px-3 py-1 placeholder:text-[#A8A29E] focus:border-[#2563EBaa]"
         type="text"
         name="creator"
         id="creator"
         placeholder="Created by..."
+        value={creator}
         onChange={(event) => setCreator(event.target.value)}
       />
 
       <button
-        className="bg-[#2563EB] hover:bg-[#1D4ED8] text-[.7rem] px-3 py-1 rounded-lg text-white"
+        className="bg-[#2563EB] hover:bg-[#1D4ED8] text-[.7rem] px-3 py-1 rounded-lg text-white active:scale-[.95] transition-all"
         onClick={(e) => {
-            e.preventDefault();
-            addTodo();
+          e.preventDefault();
+          addTodo();
         }}
       >
         Add Task
