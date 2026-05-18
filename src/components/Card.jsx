@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   DragContext,
   TasksContext,
@@ -16,16 +16,29 @@ const Card = ({ title, date, creator, id, bg }) => {
   const { setDraggedId } = useContext(DragContext);
   const { tasks, setTasks } = useContext(TasksContext);
 
+  const [isDragging, setIsDragging] = useState(false);
+
   const deleteTodo = (id) => {
     return setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const handleDragStart = () => {
+    setIsDragging(true);
+    setDraggedId(id);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    setDraggedId(null);
   };
 
   return (
     <div
       draggable="true"
-      onDragStart={() => setDraggedId(id)}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
       style={{ backgroundColor: theme ? bg : "white" }}
-      className={`relative cursor-grab w-full h-max mb-2 font-sans rounded-lg flex flex-col p-2 gap-2 border ${theme ? "border-[#333]" : "border-[#E7E7E9]"}`}
+      className={`relative cursor-grab w-full h-max mb-2 font-sans rounded-lg ${isDragging ? "opacity-50 blur-xs" : "opacity-100"} flex flex-col p-2 gap-2 border ${theme ? "border-[#333]" : "border-[#E7E7E9]"}`}
     >
       {creator && (
         <span className="text-[#9CA3AF] text-[.65rem] font-medium capitalize">
