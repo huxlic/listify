@@ -11,7 +11,7 @@ import { FiTrash2 } from "react-icons/fi";
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter ";
 import formatDateTime from "../helpers/formatDateTime";
 
-const Card = ({ title, date, creator, id, bg }) => {
+const Card = ({ title, date, creator, id, bg, status }) => {
   const { theme } = useContext(ThemeContext);
   const { setDraggedId } = useContext(DragContext);
   const { tasks, setTasks } = useContext(TasksContext);
@@ -46,7 +46,9 @@ const Card = ({ title, date, creator, id, bg }) => {
         </span>
       )}
 
-      <p className="text-[.75rem] normal-case">
+      <p
+        className={`text-[.75rem] normal-case ${status === "complete" && "line-through text-[#9CA3AF]"}`}
+      >
         {capitalizeFirstLetter(title)}
       </p>
       {date && (
@@ -61,7 +63,7 @@ const Card = ({ title, date, creator, id, bg }) => {
         className="cursor-pointer absolute right-2"
         onClick={() => deleteTodo(id)}
       >
-        <FiTrash2 color={theme ? "#aaa" : "#9CA3AF"} size={13} />
+        <FiTrash2 color={theme ? "#aaa" : "#9CA3AF"} size={11} />
       </div>
     </div>
   );
